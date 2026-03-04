@@ -3,88 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Acceso</title>
+    <title>Sistema de Acceso Pro</title>
+    <!-- Enlace al archivo CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Sección de Registro -->
-    <section id="registro-section">
-        <h1>Crear una cuenta</h1>
-        <p>Introduce tus datos para registrarte en el sistema.</p>
-        <form id="registro-form">
-            <div>
-                <label for="reg-user">Nombre de usuario:</label><br>
-                <input type="text" id="reg-user" name="username" required>
+    <!-- Contenedor Principal de Autenticación (Login y Registro Juntos) -->
+    <section id="auth-container">
+        <!-- Selector de pestañas -->
+        <div class="tab-selector">
+            <button id="btn-show-login" class="tab-btn active">Iniciar Sesión</button>
+            <button id="btn-show-register" class="tab-btn">Registrarse</button>
+        </div>
+
+        <div class="auth-content">
+            <!-- Bloque de Inicio de Sesión -->
+            <div id="login-block">
+                <h1>Bienvenido</h1>
+                <p>Ingresa tus datos de usuario.</p>
+                <form id="login-form">
+                    <label for="login-user">Usuario o Email</label>
+                    <input type="text" id="login-user" placeholder="nombre@ejemplo.com" required>
+                    
+                    <label for="login-pass">Contraseña</label>
+                    <input type="password" id="login-pass" placeholder="Tu contraseña" required>
+                    
+                    <button type="submit" class="btn-blue">Entrar</button>
+                </form>
             </div>
-            <br>
-            <div>
-                <label for="reg-email">Correo electrónico:</label><br>
-                <input type="email" id="reg-email" name="email" required>
+
+            <!-- Bloque de Registro (Oculto inicialmente) -->
+            <div id="register-block" style="display: none;">
+                <h1>Crear Cuenta</h1>
+                <p>Completa el formulario para unirte.</p>
+                <form id="registro-form">
+                    <label for="reg-user">Nombre de Usuario</label>
+                    <input type="text" id="reg-user" placeholder="Usuario123" required>
+                    
+                    <label for="reg-email">Correo Electrónico</label>
+                    <input type="email" id="reg-email" placeholder="correo@ejemplo.com" required>
+                    
+                    <label for="reg-pass">Contraseña Nueva</label>
+                    <input type="password" id="reg-pass" placeholder="Mínimo 8 caracteres" required>
+                    
+                    <button type="submit" class="btn-blue">Registrarse Ahora</button>
+                </form>
             </div>
-            <br>
-            <div>
-                <label for="reg-pass">Contraseña:</label><br>
-                <input type="password" id="reg-pass" name="password" required>
-            </div>
-            <br>
-            <button type="submit">Registrarse</button>
-        </form>
+        </div>
     </section>
 
-    <hr>
-
-    <!-- Sección de Inicio de Sesión -->
-    <section id="login-section">
-        <h1>Iniciar sesión</h1>
-        <p>Accede a tu cuenta de usuario estándar.</p>
-        <form id="login-form">
-            <div>
-                <label for="login-user">Usuario o Correo:</label><br>
-                <input type="text" id="login-user" name="login_identity" required>
-            </div>
-            <br>
-            <div>
-                <label for="login-pass">Contraseña:</label><br>
-                <input type="password" id="login-pass" name="login_password" required>
-            </div>
-            <br>
-            <button type="submit">Entrar</button>
-        </form>
-    </section>
-
-    <hr>
-
-    <!-- Sección de Administrador -->
+    <!-- Sección Especial para Administradores -->
     <section id="admin-section">
-        <h1>Panel de Control</h1>
-        <p>Solo personal autorizado.</p>
-        
+        <h1>Acceso Admin</h1>
+        <p>Solo personal con clave maestra.</p>
         <form id="admin-form">
-            <fieldset>
-                <legend>Acceso Administrativo</legend>
-                <div>
-                    <label for="admin-pass">Contraseña de Administrador:</label><br>
-                    <input type="password" id="admin-pass" name="admin_secret" placeholder="Ingrese clave maestra" required>
-                </div>
-                <br>
-                <button type="submit">Acceder como Admin</button>
-            </fieldset>
+            <label for="admin-pass">Contraseña de Administrador</label>
+            <input type="password" id="admin-pass" placeholder="Clave Maestra" required>
+            <button type="submit" class="btn-red">Acceder como Administrador</button>
         </form>
     </section>
 
-    <!-- Espacio de Usuario (Oculto inicialmente) -->
+    <!-- Espacio de Usuario (Se muestra tras el login) -->
     <section id="user-space" style="display: none;">
-        <h1>Bienvenido al Espacio de Usuario</h1>
-        <p>Has accedido correctamente al área privada.</p>
-        <button id="logout-btn">Cerrar Sesión</button>
+        <div class="success-header">
+            <h1>¡Acceso Exitoso!</h1>
+            <p>Bienvenido a tu panel de control personal.</p>
+        </div>
+        <div class="user-content">
+            <p>Aquí puedes gestionar tu perfil y configuraciones.</p>
+            <button id="logout-btn" class="btn-gray">Cerrar Sesión</button>
+        </div>
     </section>
 
-    <footer>
-        <p><small>&copy; 2024 Mi Sistema Web - Todos los derechos reservados.</small></p>
-    </footer>
-
-    <!-- Vinculación del archivo JavaScript -->
+    <!-- Enlace al archivo JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
