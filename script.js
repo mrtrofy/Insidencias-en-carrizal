@@ -1,63 +1,79 @@
 // Configuración de la contraseña maestra para el Admin
 const ADMIN_PASSWORD = "admin123";
 
-// Referencias a los elementos del DOM
+// Referencias a los elementos del DOM (Ajustados a tu index.html)
 const adminForm = document.getElementById('admin-form');
 const loginForm = document.getElementById('login-form');
 const registroForm = document.getElementById('registro-form');
 
+const authContainer = document.getElementById('auth-container');
 const adminSection = document.getElementById('admin-section');
-const loginSection = document.getElementById('login-section');
-const registroSection = document.getElementById('registro-section');
 const userSpace = document.getElementById('user-space');
 const logoutBtn = document.getElementById('logout-btn');
 
+// Referencias para el intercambio de pestañas
+const btnShowLogin = document.getElementById('btn-show-login');
+const btnShowRegister = document.getElementById('btn-show-register');
+const loginBlock = document.getElementById('login-block');
+const registerBlock = document.getElementById('register-block');
+
 /**
- * Función para mostrar el espacio de usuario y ocultar el resto
+ * Lógica para intercambiar entre Iniciar Sesión y Registro
+ */
+btnShowRegister.addEventListener('click', () => {
+    loginBlock.style.display = 'none';
+    registerBlock.style.display = 'block';
+    btnShowRegister.classList.add('active');
+    btnShowLogin.classList.remove('active');
+});
+
+btnShowLogin.addEventListener('click', () => {
+    registerBlock.style.display = 'none';
+    loginBlock.style.display = 'block';
+    btnShowLogin.classList.add('active');
+    btnShowRegister.classList.remove('active');
+});
+
+/**
+ * Función para mostrar el espacio de usuario
  */
 function mostrarEspacioUsuario() {
+    authContainer.style.display = 'none';
     adminSection.style.display = 'none';
-    loginSection.style.display = 'none';
-    registroSection.style.display = 'none';
     userSpace.style.display = 'block';
 }
 
 /**
- * Función para cerrar sesión y volver al estado inicial
+ * Función para cerrar sesión
  */
 function cerrarSesion() {
+    authContainer.style.display = 'block';
     adminSection.style.display = 'block';
-    loginSection.style.display = 'block';
-    registroSection.style.display = 'block';
     userSpace.style.display = 'none';
     
-    // Limpiar campos de contraseña
+    // Limpiar campos
     document.getElementById('admin-pass').value = '';
+    loginForm.reset();
+    registroForm.reset();
 }
 
 // Evento para el formulario de Administrador
 adminForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Evitar que la página se recargue
-    
+    event.preventDefault();
     const inputPass = document.getElementById('admin-pass').value;
     
     if (inputPass === ADMIN_PASSWORD) {
         mostrarEspacioUsuario();
-        console.log("Acceso concedido como administrador.");
     } else {
-        // En lugar de alert(), usamos un mensaje en consola o podrías añadir un texto en el HTML
-        console.error("Contraseña incorrecta.");
         const errorMsg = document.createElement('p');
-        errorMsg.style.color = 'red';
-        errorMsg.innerText = "Error: Contraseña de administrador incorrecta.";
+        errorMsg.className = 'error-text'; // Usa la clase de tu CSS
+        errorMsg.innerText = "Error: Contraseña incorrecta.";
         adminForm.appendChild(errorMsg);
-        
-        // Eliminar el mensaje después de 3 segundos
         setTimeout(() => errorMsg.remove(), 3000);
     }
 });
 
-// Eventos para simular login y registro estándar
+// Eventos para login y registro
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     mostrarEspacioUsuario();
@@ -68,5 +84,5 @@ registroForm.addEventListener('submit', (e) => {
     mostrarEspacioUsuario();
 });
 
-// Evento para el botón de cerrar sesión
+// Evento para cerrar sesión
 logoutBtn.addEventListener('click', cerrarSesion);
