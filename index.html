@@ -10,8 +10,8 @@
 
     <section id="auth-container">
         <div class="tab-selector">
-            <button id="btn-show-login" class="tab-btn active">Iniciar Sesión</button>
-            <button id="btn-show-register" class="tab-btn">Registrarse</button>
+            <button class="tab-btn active">Iniciar Sesión</button>
+            <button onclick="window.location.href='registro.html'" class="tab-btn">Registrarse</button>
         </div>
 
         <div class="auth-content">
@@ -26,35 +26,6 @@
                     <input type="password" id="login-pass" placeholder="Tu contraseña" required>
                     
                     <button type="submit" class="btn-blue">Entrar</button>
-                </form>
-            </div>
-
-            <div id="register-block" style="display: none;">
-                <h1>Crear Cuenta</h1>
-                <p>Completa el formulario para unirte.</p>
-                <form id="registro-form">
-                    <label for="reg-name">Nombre</label>
-                    <input type="text" id="reg-name" placeholder="Tu nombre" required>
-
-                    <label for="reg-lastname">Apellido</label>
-                    <input type="text" id="reg-lastname" placeholder="Tu apellido" required>
-
-                    <label for="reg-id">Cédula</label>
-                    <input type="text" id="reg-id" placeholder="V-00.000.000" required>
-
-                    <label for="reg-location">¿En qué parte de Carrizal vives?</label>
-                    <input type="text" id="reg-location" placeholder="Ej: Colinas de Carrizal" required>
-
-                    <hr> <label for="reg-user">Nombre de Usuario</label>
-                    <input type="text" id="reg-user" placeholder="Usuario123" required>
-                    
-                    <label for="reg-email">Correo Electrónico</label>
-                    <input type="email" id="reg-email" placeholder="correo@ejemplo.com" required>
-                    
-                    <label for="reg-pass">Contraseña Nueva</label>
-                    <input type="password" id="reg-pass" placeholder="Mínimo 8 caracteres" required>
-                    
-                    <button type="submit" class="btn-blue">Registrarse Ahora</button>
                 </form>
             </div>
         </div>
@@ -73,10 +44,7 @@
     <section id="user-space" style="display: none;">
         <div class="success-header">
             <h1>¡Acceso Exitoso!</h1>
-            <p>Bienvenido a tu panel de control personal.</p>
-        </div>
-        <div class="user-content">
-            <p>Aquí puedes gestionar tu perfil y configuraciones.</p>
+            <p>Bienvenido a tu panel de control.</p>
             <button id="logout-btn" class="btn-gray">Cerrar Sesión</button>
         </div>
     </section>
