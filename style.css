@@ -6,56 +6,56 @@
     --light-bg: #f0f2f5;
     --white: #ffffff;
     --text-dark: #333333;
-    --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     background-color: var(--light-bg);
     color: var(--text-dark);
     margin: 0;
-    padding: 20px; /* Reducido para móviles */
+    padding: 20px; /* Espacio para que los cajones no peguen al borde del cel */
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
 }
 
-/* --- Contenedores de Sección (Cajones) --- */
+/* --- Cajones Redondeados --- */
 section {
     background-color: var(--white);
-    border-radius: 12px;
+    border-radius: 20px; /* Bordes bien redondeados como pides */
     box-shadow: var(--shadow);
     padding: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     width: 100%;
-    max-width: 420px;
-    box-sizing: border-box; /* Crucial para que el padding no rompa el ancho */
+    max-width: 400px; /* Tamaño fijo máximo para PC */
+    box-sizing: border-box; /* Mantiene el redondeado dentro del ancho */
+    overflow: hidden; /* Asegura que nada sobresalga de las esquinas */
     transition: transform 0.3s ease;
 }
 
-#auth-container { border-top: 6px solid var(--primary-blue); }
-#admin-section { border-top: 6px solid var(--secondary-red); }
-#user-space { border-top: 6px solid var(--success-green); }
+#auth-container { border-top: 8px solid var(--primary-blue); }
+#admin-section { border-top: 8px solid var(--secondary-red); }
+#user-space { border-top: 8px solid var(--success-green); }
 
 /* --- Selector de Pestañas --- */
 .tab-selector {
     display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 25px;
+    justify-content: center;
 }
 
 .tab-btn {
-    flex: 1; /* Hace que los botones midan lo mismo en móvil */
-    background: none;
-    color: #666;
-    padding: 10px 5px;
-    font-size: 0.9rem;
-    border-radius: 6px;
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
     border: none;
+    background: #eee;
+    font-weight: bold;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .tab-btn.active {
@@ -63,67 +63,62 @@ section {
     color: white;
 }
 
-/* --- Formularios --- */
+/* --- Inputs y Formularios --- */
 h1 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    text-align: center;
     margin-top: 0;
 }
 
+p { text-align: center; color: #666; }
+
 label {
-    font-weight: 600;
     display: block;
-    margin-bottom: 6px;
-    font-size: 0.85rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 input {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 2px solid #edeff2;
-    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 2px solid #f0f0f0;
+    border-radius: 12px; /* Inputs también redondeados */
     box-sizing: border-box;
-    font-size: 16px; /* Evita el zoom automático en iOS al hacer focus */
+    font-size: 16px; /* Evita zoom en móviles */
 }
 
 input:focus {
     outline: none;
     border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+    background-color: #fff;
 }
 
 /* --- Botones --- */
-button {
+button[type="submit"], .btn-blue, .btn-red, .btn-gray {
     width: 100%;
-    padding: 14px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
+    padding: 15px;
+    border-radius: 12px; /* Botones redondeados */
     border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .btn-blue { background-color: var(--primary-blue); color: white; }
 .btn-red { background-color: var(--secondary-red); color: white; }
 .btn-gray { background-color: #6c757d; color: white; }
 
-/* --- AJUSTES PARA MÓVIL (Responsive) --- */
+/* --- Ajuste específico para que se vea igual de Pro en el Teléfono --- */
 @media (max-width: 480px) {
     body {
-        padding: 10px; /* Menos espacio alrededor en pantallas mini */
+        padding: 15px; /* Margen externo para que se vea la sombra y el redondeado */
     }
-
+    
     section {
-        padding: 1.5rem; /* Cajones menos espaciosos por dentro */
-        margin-bottom: 1rem;
-        border-radius: 8px;
-    }
-
-    h1 {
-        font-size: 1.2rem;
-    }
-
-    .tab-btn {
-        font-size: 0.8rem;
-        padding: 8px 4px;
+        padding: 1.5rem;
+        border-radius: 25px; /* Reforzamos el redondeado en móvil */
+        width: 95%; /* No llega al 100% para que se noten las curvas */
     }
 }
