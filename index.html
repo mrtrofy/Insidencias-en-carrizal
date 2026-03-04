@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Acceso Pro</title>
-    <!-- Enlace al archivo CSS -->
+    <title>Carrizal Segura</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Contenedor Principal de Autenticación (Login y Registro Juntos) -->
     <section id="auth-container">
-        <!-- Selector de pestañas -->
         <div class="tab-selector">
             <button id="btn-show-login" class="tab-btn active">Iniciar Sesión</button>
             <button id="btn-show-register" class="tab-btn">Registrarse</button>
         </div>
 
         <div class="auth-content">
-            <!-- Bloque de Inicio de Sesión -->
             <div id="login-block">
                 <h1>Bienvenido</h1>
                 <p>Ingresa tus datos de usuario.</p>
@@ -33,12 +29,23 @@
                 </form>
             </div>
 
-            <!-- Bloque de Registro (Oculto inicialmente) -->
             <div id="register-block" style="display: none;">
                 <h1>Crear Cuenta</h1>
                 <p>Completa el formulario para unirte.</p>
                 <form id="registro-form">
-                    <label for="reg-user">Nombre de Usuario</label>
+                    <label for="reg-name">Nombre</label>
+                    <input type="text" id="reg-name" placeholder="Tu nombre" required>
+
+                    <label for="reg-lastname">Apellido</label>
+                    <input type="text" id="reg-lastname" placeholder="Tu apellido" required>
+
+                    <label for="reg-id">Cédula</label>
+                    <input type="text" id="reg-id" placeholder="V-00.000.000" required>
+
+                    <label for="reg-location">¿En qué parte de Carrizal vives?</label>
+                    <input type="text" id="reg-location" placeholder="Ej: Colinas de Carrizal" required>
+
+                    <hr> <label for="reg-user">Nombre de Usuario</label>
                     <input type="text" id="reg-user" placeholder="Usuario123" required>
                     
                     <label for="reg-email">Correo Electrónico</label>
@@ -53,7 +60,6 @@
         </div>
     </section>
 
-    <!-- Sección Especial para Administradores -->
     <section id="admin-section">
         <h1>Acceso Admin</h1>
         <p>Solo personal con clave maestra.</p>
@@ -64,7 +70,6 @@
         </form>
     </section>
 
-    <!-- Espacio de Usuario (Se muestra tras el login) -->
     <section id="user-space" style="display: none;">
         <div class="success-header">
             <h1>¡Acceso Exitoso!</h1>
@@ -76,7 +81,6 @@
         </div>
     </section>
 
-    <!-- Enlace al archivo JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
