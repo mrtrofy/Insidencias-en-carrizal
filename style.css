@@ -3,18 +3,18 @@
     --primary-blue: #0056b3;
     --secondary-red: #d9534f;
     --success-green: #28a745;
-    --light-bg: #f0f2f5; /* Un gris un poco más suave */
+    --light-bg: #f0f2f5;
     --white: #ffffff;
     --text-dark: #333333;
     --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--light-bg);
     color: var(--text-dark);
     margin: 0;
-    padding: 40px 20px;
+    padding: 20px; /* Reducido para móviles */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,42 +24,38 @@ body {
 /* --- Contenedores de Sección (Cajones) --- */
 section {
     background-color: var(--white);
-    border-radius: 12px; /* Bordes más redondeados */
+    border-radius: 12px;
     box-shadow: var(--shadow);
-    padding: 2.5rem;
-    margin-bottom: 2.5rem;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
     width: 100%;
     max-width: 420px;
+    box-sizing: border-box; /* Crucial para que el padding no rompa el ancho */
     transition: transform 0.3s ease;
 }
 
-section:hover {
-    transform: translateY(-5px); /* Efecto sutil al pasar el mouse */
-}
-
-/* Colores de borde superior para diferenciar secciones */
 #auth-container { border-top: 6px solid var(--primary-blue); }
 #admin-section { border-top: 6px solid var(--secondary-red); }
-#user-space { 
-    border-top: 6px solid var(--success-green); 
-    text-align: center;
-}
+#user-space { border-top: 6px solid var(--success-green); }
 
-/* --- Selector de Pestañas (Tabs) --- */
+/* --- Selector de Pestañas --- */
 .tab-selector {
     display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
+    gap: 8px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 .tab-btn {
+    flex: 1; /* Hace que los botones midan lo mismo en móvil */
     background: none;
     color: #666;
-    padding: 10px;
+    padding: 10px 5px;
     font-size: 0.9rem;
     border-radius: 6px;
+    border: none;
+    cursor: pointer;
 }
 
 .tab-btn.active {
@@ -67,102 +63,67 @@ section:hover {
     color: white;
 }
 
-.tab-btn:hover:not(.active) {
-    background-color: #e9ecef;
-}
-
-/* --- Tipografía --- */
+/* --- Formularios --- */
 h1 {
-    color: var(--text-dark);
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
+    font-size: 1.4rem;
+    margin-top: 0;
 }
 
-p {
-    color: #666;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-}
-
-/* --- Formularios e Inputs --- */
 label {
     font-weight: 600;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-size: 0.85rem;
-    color: #555;
 }
 
 input {
     width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 20px;
-    border: 2px solid #edeff2; /* Borde más elegante */
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #edeff2;
     border-radius: 8px;
     box-sizing: border-box;
-    font-size: 1rem;
-    transition: all 0.2s ease;
+    font-size: 16px; /* Evita el zoom automático en iOS al hacer focus */
 }
 
 input:focus {
     outline: none;
     border-color: var(--primary-blue);
-    background-color: #fff;
-    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
 }
 
 /* --- Botones --- */
 button {
     width: 100%;
     padding: 14px;
-    border: none;
     border-radius: 8px;
-    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    border: none;
 }
 
-.btn-blue {
-    background-color: var(--primary-blue);
-    color: white;
-}
+.btn-blue { background-color: var(--primary-blue); color: white; }
+.btn-red { background-color: var(--secondary-red); color: white; }
+.btn-gray { background-color: #6c757d; color: white; }
 
-.btn-blue:hover {
-    background-color: #004494;
-    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
-}
+/* --- AJUSTES PARA MÓVIL (Responsive) --- */
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Menos espacio alrededor en pantallas mini */
+    }
 
-.btn-red {
-    background-color: var(--secondary-red);
-    color: white;
-}
+    section {
+        padding: 1.5rem; /* Cajones menos espaciosos por dentro */
+        margin-bottom: 1rem;
+        border-radius: 8px;
+    }
 
-.btn-red:hover {
-    background-color: #c9302c;
-    box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3);
-}
+    h1 {
+        font-size: 1.2rem;
+    }
 
-.btn-gray {
-    background-color: #f8f9fa;
-    color: #333;
-    border: 1px solid #ddd;
-}
-
-.btn-gray:hover {
-    background-color: #e2e6ea;
-}
-
-/* --- Ajustes de Éxito/Admin --- */
-.success-header h1 {
-    color: var(--success-green);
-}
-
-.error-text {
-    color: var(--secondary-red);
-    background-color: #fdf2f2;
-    padding: 10px;
-    border-radius: 6px;
-    margin-top: 15px;
+    .tab-btn {
+        font-size: 0.8rem;
+        padding: 8px 4px;
+    }
 }
