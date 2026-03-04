@@ -2,131 +2,167 @@
 :root {
     --primary-blue: #0056b3;
     --secondary-red: #d9534f;
-    --light-bg: #f8f9fa;
+    --success-green: #28a745;
+    --light-bg: #f0f2f5; /* Un gris un poco más suave */
     --white: #ffffff;
     --text-dark: #333333;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--light-bg);
     color: var(--text-dark);
     margin: 0;
-    padding: 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
-/* Contenedores de Sección */
+/* --- Contenedores de Sección (Cajones) --- */
 section {
     background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    margin-bottom: 2rem;
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
     width: 100%;
-    max-width: 400px;
-    border-top: 5px solid var(--primary-blue);
+    max-width: 420px;
+    transition: transform 0.3s ease;
 }
 
-#admin-section {
-    border-top: 5px solid var(--secondary-red);
+section:hover {
+    transform: translateY(-5px); /* Efecto sutil al pasar el mouse */
 }
 
-h1 {
-    color: var(--primary-blue);
-    font-size: 1.5rem;
-    margin-top: 0;
+/* Colores de borde superior para diferenciar secciones */
+#auth-container { border-top: 6px solid var(--primary-blue); }
+#admin-section { border-top: 6px solid var(--secondary-red); }
+#user-space { 
+    border-top: 6px solid var(--success-green); 
+    text-align: center;
 }
 
-hr {
-    border: 0;
-    height: 1px;
-    background: #ccc;
-    margin: 20px 0;
-    width: 100%;
-    max-width: 450px;
+/* --- Selector de Pestañas (Tabs) --- */
+.tab-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
 }
 
-/* Formularios */
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
+.tab-btn {
+    background: none;
+    color: #666;
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+.tab-btn.active {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.tab-btn:hover:not(.active) {
+    background-color: #e9ecef;
+}
+
+/* --- Tipografía --- */
+h1 {
+    color: var(--text-dark);
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* --- Formularios e Inputs --- */
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #edeff2; /* Borde más elegante */
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: all 0.2s ease;
 }
 
 input:focus {
     outline: none;
     border-color: var(--primary-blue);
-    box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.1);
 }
 
-/* Botones */
+/* --- Botones --- */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: none;
-    border-radius: 4px;
-    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-button[type="submit"] {
+.btn-blue {
     background-color: var(--primary-blue);
-    color: var(--white);
-}
-
-button[type="submit"]:hover {
-    background-color: #004494;
-}
-
-#admin-form button {
-    background-color: var(--secondary-red);
-    color: var(--white);
-}
-
-#admin-form button:hover {
-    background-color: #c9302c;
-}
-
-#logout-btn {
-    background-color: #6c757d;
     color: white;
-    margin-top: 20px;
 }
 
-#logout-btn:hover {
-    background-color: #5a6268;
+.btn-blue:hover {
+    background-color: #004494;
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
 }
 
-/* Espacio de Usuario */
-#user-space {
-    text-align: center;
-    border-top: 5px solid #28a745; /* Verde para éxito */
+.btn-red {
+    background-color: var(--secondary-red);
+    color: white;
 }
 
-/* Mensajes de Error */
+.btn-red:hover {
+    background-color: #c9302c;
+    box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3);
+}
+
+.btn-gray {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-gray:hover {
+    background-color: #e2e6ea;
+}
+
+/* --- Ajustes de Éxito/Admin --- */
+.success-header h1 {
+    color: var(--success-green);
+}
+
 .error-text {
     color: var(--secondary-red);
-    font-size: 0.9rem;
-    margin-top: 10px;
-    text-align: center;
-}
-
-footer {
-    margin-top: 20px;
-    color: #777;
+    background-color: #fdf2f2;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 15px;
 }
